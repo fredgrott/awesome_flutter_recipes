@@ -1,0 +1,40 @@
+Chapter 1 DevOPS
+
+Lint set ups
+  -Flutter Google Way
+  -Lint Pascal and Dart Code Metrics way
+Code Metrics
+   -Dart Code Metrics
+Build variants
+Capture Flutter Errors
+  -Run in services container ie async
+  -Reporting to Sentry Services
+  -Catcher with Sentry
+       -other Catcher options
+Logging in A Flutter Reactive Way
+IDE Configs
+Basic Git Operations
+
+
+
+Chapter 2 Painting  And Animation
+
+Chapter 3 Navigation 2.0 Recipes
+
+
+
+
+Chapter 4 Core of State, Non-widget and Widget
+
+
+
+Chapter 5 Flex Responsive Layout Playground
+
+Chapter 6 Custom Complex Component
+          Playground
+
+Chapter 7 Testing Like You Are A Flutter Geek
+
+Chapter 8 Filling the Material Design Holes With Flex Color Scheme
+
+Chapter 9 Gestures

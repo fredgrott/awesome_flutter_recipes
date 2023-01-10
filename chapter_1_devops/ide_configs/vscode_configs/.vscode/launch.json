@@ -1,0 +1,206 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  //  per dart-flutter extensions directions at: https://dartcode.org/docs/launch-configuration/
+  //
+  // although one can, NEVER EVER put any define args in these launch configs as it's 
+  // too easy to by mistake include private keys and have them end up in the 
+  // git repo.
+  //
+  // Since build variants require the -t target-main-dart.dart 
+  // they go as separate launch config settings here
+  //
+  // 
+  // Remember deviceID only works for connected running devices or emulators(simulators)
+  // To launch non running emulators(simulators) one uses a task as than it will expose that 
+  // in the command pallete
+  //
+  // For running connected devices its deviceID in the config and 
+  //   "compounds": [{
+  //      "name": "All Devices",
+  //      "configurations": ["Run Dev Android", "Run Dev Iphone"],
+  //     
+  //  }]
+  // The All Devices will show up as a Run Device launch Config Option in the Run menu
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+      "name": "Flutter Windows(Debug)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main.dart",
+      "env": {
+        "RELEASE_MODE": false
+      },
+      "args":[
+        "-d",
+        "windows",
+      ],
+      "templateFor": "test",
+      "console": "debugConsole",
+      "flutterMode": "debug",
+      "runTestsOnDevice": false,
+      "codeLens": {
+        "for": [
+          "run-test",
+          "run-test-file",
+          "debug-test",
+          "debug-test-file"
+        ],
+        "title": "${debugType} (release)"
+      }
+    },
+    {
+      "name": "Flutter Windows(Profile)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main.dart",
+      "env": {
+        "RELEASE_MODE": false
+      },
+      "args": [
+        "-d",
+        "windows",
+      ],
+      "templateFor": "test",
+      "console": "debugConsole",
+      "flutterMode": "profile",
+      "runTestsOnDevice": false,
+      "codeLens": {
+        "for": [
+          "run-test",
+          "run-test-file",
+          "debug-test",
+          "debug-test-file"
+        ],
+        "title": "${debugType} (release)"
+      }
+    },
+    {
+      "name": "Flutter Windows(Release)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main.dart",
+      "env": {
+        "RELEASE_MODE": true
+      },
+      "args": [
+        "-d",
+        "windows",
+      ],
+      "templateFor": "test",
+      "console": "debugConsole",
+      "flutterMode": "release",
+      "runTestsOnDevice": false,
+      "codeLens": {
+        "for": [
+          "run-test",
+          "run-test-file",
+          "debug-test",
+          "debug-test-file"
+        ],
+        "title": "${debugType} (release)"
+      }
+    },
+    {
+      "name": "Golden",
+      "request": "launch",
+      "type": "dart",
+      "codeLens": {
+        "for": [
+          "run-test",
+          "run-test-file"
+        ]
+      },
+      "args": [
+        "--update-goldens"
+      ]
+    },
+    {
+      "name": "Flutter Web(Debug)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main.dart",
+      "env": {
+        "RELEASE_MODE": false
+      },
+      "args": [
+        "-d",
+        "chrome",
+      ],
+      "templateFor": "test",
+      "console": "debugConsole",
+      "flutterMode": "debug",
+      "runTestsOnDevice": false,
+      "codeLens": {
+        "for": [
+          "run-test",
+          "run-test-file",
+          "debug-test",
+          "debug-test-file"
+        ],
+        "title": "${debugType} (release)"
+      }
+    },
+    {
+      "name": "Flutter Web(Profile)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main.dart",
+      "env": {
+        "RELEASE_MODE": false
+      },
+      "args": [
+        "-d",
+        "chrome",
+      ],
+      "templateFor": "test",
+      "console": "debugConsole",
+      "flutterMode": "profile",
+      "runTestsOnDevice": false,
+      "codeLens": {
+        "for": [
+          "run-test",
+          "run-test-file",
+          "debug-test",
+          "debug-test-file"
+        ],
+        "title": "${debugType} (release)"
+      }
+    },
+    {
+      "name": "Flutter Web(Release)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "lib/main.dart",
+      "env": {
+        "RELEASE_MODE": true
+      },
+      "args": [
+        "-d",
+        "chrome",
+      ],
+      "templateFor": "test",
+      "console": "debugConsole",
+      "flutterMode": "release",
+      "runTestsOnDevice": false,
+      "codeLens": {
+        "for": [
+          "run-test",
+          "run-test-file",
+          "debug-test",
+          "debug-test-file"
+        ],
+        "title": "${debugType} (release)"
+      }
+    },
+  ]
+}
