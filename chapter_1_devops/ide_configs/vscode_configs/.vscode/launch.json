@@ -50,6 +50,7 @@
           "debug-test",
           "debug-test-file"
         ],
+        "path": "test/integration_tests",
         "title": "${debugType} (release)"
       }
     },
@@ -77,6 +78,7 @@
           "debug-test",
           "debug-test-file"
         ],
+        "path": "test/integration_tests",
         "title": "${debugType} (release)"
       }
     },
@@ -104,6 +106,7 @@
           "debug-test",
           "debug-test-file"
         ],
+        "path": "test/integration_tests",
         "title": "${debugType} (release)"
       }
     },
@@ -122,11 +125,39 @@
       ]
     },
     {
+      "name": "Flutter Unit Tests(Debug)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "test",
+      "env": {
+        "RELEASE_MODE": false
+      },
+      "args": [
+        "-d",
+        "windows",
+      ],
+      "templateFor": "test",
+      "console": "debugConsole",
+      "flutterMode": "debug",
+      "runTestsOnDevice": false,
+      "codeLens": {
+        "for": [
+          "run-test",
+          "run-test-file",
+          "debug-test",
+          "debug-test-file"
+        ],
+        "path": "test/integration_tests",
+        "title": "${debugType} (release)"
+      }
+    },
+    {
       "name": "Flutter Web(Debug)",
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}",
-      "program": "lib/main.dart",
+      "program": "web",
       "env": {
         "RELEASE_MODE": false
       },
@@ -145,6 +176,7 @@
           "debug-test",
           "debug-test-file"
         ],
+        "path": "test/integration_tests",
         "title": "${debugType} (release)"
       }
     },
@@ -153,7 +185,7 @@
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}",
-      "program": "lib/main.dart",
+      "program": "web",
       "env": {
         "RELEASE_MODE": false
       },
@@ -172,6 +204,7 @@
           "debug-test",
           "debug-test-file"
         ],
+        "path": "test/integration_tests",
         "title": "${debugType} (release)"
       }
     },
@@ -180,7 +213,7 @@
       "request": "launch",
       "type": "dart",
       "cwd": "${workspaceFolder}",
-      "program": "lib/main.dart",
+      "program": "web",
       "env": {
         "RELEASE_MODE": true
       },
@@ -199,6 +232,35 @@
           "debug-test",
           "debug-test-file"
         ],
+        "path": "test/integration_tests",
+        "title": "${debugType} (release)"
+      }
+    },
+    {
+      "name": "Dart (Debug)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}",
+      "program": "bin/main.dart",
+      "env": {
+        "RELEASE_MODE": false
+      },
+      "args": [
+        "--dart-define",
+        "MY_VAR=foo"
+      ],
+      "templateFor": "test",
+      "console": "debugConsole",
+      "flutterMode": "debug",
+      "runTestsOnDevice": false,
+      "codeLens": {
+        "for": [
+          "run-test",
+          "run-test-file",
+          "debug-test",
+          "debug-test-file"
+        ],
+        "path": "test/integration_tests",
         "title": "${debugType} (release)"
       }
     },

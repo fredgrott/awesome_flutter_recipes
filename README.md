@@ -1,3 +1,5 @@
+![cover](./media/image-header.jpg)
+
 # Awesome Flutter Recipes
 
 This is the code repository to the Awesome Flutter Recipse book. It's an opinionated look at what Flutter Recipes to build awesome Flutter Apps.
@@ -28,6 +30,8 @@ And the social profiles that I post the article links on are:
 [Matodon](https://uiuxdev.social/web/@fredgrott)
 
 [PostNews](https://post.news/fredgrott)
+
+[Twitter](https://twitter.com/fredgrott)
 
 [YouTube](https://www.youtube.com/c/FredGrott)
 
@@ -62,5 +66,7 @@ I can be followed on these social networks:
 [Matodon](https://uiuxdev.social/web/@fredgrott)
 
 [PostNews](https://post.news/fredgrott)
+
+[Twitter](https://twitter.com/fredgrott)
 
 [YouTube](https://www.youtube.com/c/FredGrott)
