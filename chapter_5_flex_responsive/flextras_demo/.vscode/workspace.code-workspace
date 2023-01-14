@@ -1,0 +1,333 @@
+{
+	"folders": [
+		{ 
+			// in multi-workspace setups this would specify the different
+			// workspace folders via multiple path blocks
+			"path": ".."
+		}
+	],
+	"settings": {
+		//dartcode
+		"debug.openDebug": "openOnDebugBreak",
+		"debug.internalConsoleOptions": "openOnSessionStart",
+		//dartcode, we have two places to set one for non-editor and one for dart.editor
+		// screenshot is for mobile, I use device preview instead
+		"dart.flutterScreenshotPath": null,
+		"dart.devToolsTheme": "dark",
+		"dart.flutterCreateOrganization": "io.github.fredgrott",
+		"dart.previewFlutterUiGuides": true,
+		// these are for dartcode plugin for dart and flutter app development
+		// see https://dartcode.org/docs/settings/
+		"[dart]": {
+			"editor.defaultFormatter": "Dart-Code.dart-code",
+			//dartcode
+			"editor.formatOnSave": true,
+			//dartcode
+			"editor.formatOnType": true,
+			//dartcode
+			"editor.rulers": [
+				80
+			],
+			//dartcode
+			"editor.selectionHighlight": false,
+			//dartcode
+			"editor.suggest.snippetsPreventQuickSuggestions": false,
+			//dartcode
+			"editor.suggestSelection": "first",
+			//dartcode
+			"editor.tabCompletion": "onlySnippets",
+			//dartcode
+			"editor.wordBasedSuggestions": false,
+			"breadcrumbs.showArrays": true,
+			"breadcrumbs.showClasses": true,
+			"breadcrumbs.showConstants": true,
+			"breadcrumbs.showEnumMembers": true,
+			"breadcrumbs.showFunctions": true,
+			"breadcrumbs.showFields": true,
+			"breadcrumbs.showFiles": true,
+			"breadcrumbs.showModules": true
+		},
+		// per https://marketplace.visualstudio.com/items?itemName=Flutterando.flutter-coverage
+		"flutter-coverage.coverageFileNames": [
+			"lcov.info",
+			"cov.xml",
+			"coverage.xml",
+			"jacoco.xml"
+		],
+		"flutter-coverage.coverageFilePaths": [
+			"reports/coverage"
+		],
+		"flutter-coverage.lowCoverageThreshold": 50,
+		"flutter-coverage.sufficientCoverageThreshold": 70,
+		// per  https://github.com/gmlewis/flutter-stylizer
+		"flutterStylizer": {
+			"groupAndSortGetterMethods": "false",
+			"memberOrdering": [
+				"public-constructor",
+				"named-constructors",
+				"public-static-variables",
+				"public-instance-variables",
+				"public-override-variables",
+				"private-static-variables",
+				"private-instance-variables",
+				"public-override-methods",
+				"public-other-methods",
+				"build-method",
+			],
+			"sortOtherMethods": false,
+		},
+		// per https: //marketplace.visualstudio.com/items?itemName=rexthedev.flutter-insider
+		"Insider.links": {
+			"Flutter Docs": "https://flutter.dev/docs",
+			"Dart Docs": "https://api.dart.dev",
+			"Flex Color Scheme": "https://docs.flexcolorscheme.com/",
+			"Provider": "https://pub.dev/documentation/provider/latest/",
+			"Bloc": "https://bloclibrary.dev/#/",
+			"Riverpod": "https://riverpod.dev/",
+			"Equatable": "https://pub.dev/documentation/equatable/latest/",
+			"Golden Toolkit": "https://pub.dev/documentation/golden_toolkit/latest/",
+			"Device Preview": "https://pub.dev/documentation/device_preview/latest/",
+		},
+
+		"workbench.editor.showTabs": true,
+		// need for snippets enaling, see https://code.visualstudio.com/docs/editor/userdefinedsnippets
+		"editor.tabCompletion": "on",
+    "editor.minimap.enabled": true,
+    "editor.codeLens": true,
+    "workbench.activityBar.visible": true,
+    "editor.renderWhitespace": "all",
+    "editor.fontSize": 18,
+    "editor.lineHeight": 25,
+    "editor.letterSpacing": 0,
+		"editor.accessibilityPageSize": 10,
+		"editor.autoIndent": "advanced",
+		"terminal.integrated.fontSize": 18,
+    "terminal.integrated.lineHeight": 1.5,
+    "terminal.integrated.cursorBlinking": false,
+    "terminal.integrated.cursorStyle": "line",
+		"terminal.enableAppInsights": true,
+		"terminal.integrated.cursorWidth": 1,
+    "editor.emptySelectionClipboard": false,
+    "editor.quickSuggestionsDelay": 0,
+		"editor.formatOnSave": true,
+		"editor.formatOnType": true,
+
+		
+
+    
+
+
+
+
+    // per https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
+		"plantuml.diagramsRoot": "reports/docs/diagrams/src",
+    "plantuml.exportOutDir": "reports/docs/diagrams/out",
+		"plantuml.includepaths": [
+			"docs/diagrams/style",
+			"docs/diagrams/src"
+		],
+		"plantuml.exportFormat": "png",
+		
+
+
+		"snippets.useWorkspaceFolder": true,
+		// spell right note on Linux uses Hunspell otherwise regualr api see https://marketplace.visualstudio.com/items?itemName=ban.spellright
+		"spellright.documentTypes": [
+        "dart",
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+		"spellright.language": [
+			"en_US"
+		],
+		"spellright.statusBarIndicator": true,
+		"spellright.suggestionsInHints": true,
+		"spellright.addToSystemDictionary": false,
+		"spellright.groupDictionaries": true,
+		"spellright.recheckOnSave": false,
+		"spellright.notificationClass": "error",
+		"spellright.ignoreFiles": [
+			"**/.gitignore",
+			"**/.spellignore"
+		],
+		"spellright.ignoreRegExpsByClass": {
+			"markdown": [
+				"/&amp;/g",
+				"/&nbsp;/g"
+			],
+			"cpp": [
+				"/#include\\s+\\\".+\\\"/g"
+			],
+			"html": [
+				"/<script>[^]*?</script>/gm"
+			],
+			"latex": [
+				"/\\\\begin{minted}[^]*?\\\\end{minted}/gm"
+			]
+		},
+
+		// better comments, see https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments
+		"better-comments.multilineComments": true,
+		"better-comments.highlightPlainText": false,
+		"better-comments.tags": [
+      {
+       "tag": "!",
+       "color": "#FF2D00",
+       "strikethrough": false,
+       "underline": false,
+       "backgroundColor": "transparent",
+       "bold": false,
+       "italic": false
+      },
+      {
+       "tag": "?",
+       "color": "#3498DB",
+       "strikethrough": false,
+       "underline": false,
+       "backgroundColor": "transparent",
+       "bold": false,
+       "italic": false
+      },
+      {
+       "tag": "//",
+       "color": "#474747",
+       "strikethrough": true,
+       "underline": false,
+       "backgroundColor": "transparent",
+       "bold": false,
+       "italic": false
+      },
+      {
+       "tag": "todo",
+       "color": "#FF8C00",
+       "strikethrough": false,
+       "underline": false,
+       "backgroundColor": "transparent",
+       "bold": false,
+       "italic": false
+      },
+     {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+     }
+    ],
+
+		"editor.tokenColorCustomizations": {
+    "[Tokyo Night Storm]": { // or "[Tokyo Night Storm]"
+        "textMateRules": [{
+            "scope": [
+                "comment",
+                "meta.var.expr storage.type",
+                "keyword.control.flow",
+                "keyword.control.return",
+                "meta.directive.vue punctuation.separator.key-value.html",
+                "meta.directive.vue entity.other.attribute-name.html",
+                "tag.decorator.js entity.name.tag.js",
+                "tag.decorator.js punctuation.definition.tag.js",
+                "storage.modifier"
+            ],
+            "settings": {
+                "fontStyle": ""
+            }
+        }]
+      }
+    },// customizations via https://code.visualstudio.com/api/references/theme-color#integrated-terminal-colors
+		// errorLens https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
+		// tokyo night https://marketplace.visualstudio.com/items?itemName=enkia.tokyo-night
+		"workbench.colorCustomizations": {
+      "[Tokyo Night Storm]": { // or "[Tokyo Night Storm]"
+        "editorCodeLens.foreground": "#7982a9", // Preferred hex color
+				"errorLens.errorForegroundLight": "#e45454",
+				"errorLens.errorMessageBackground": "#e4545419",
+				"errorLens.errorBackgroundLight": "#e4545419",
+				"errorLens.warningBackground":"#ff942f1b",
+				"errorLens.warningMessageBackground":"#ff942f19",
+				"errorLens.warningBackgroundLight":"#ff942f20",
+				"errorLens.warningForeground":"#fa973a",
+				"errorLens.warningForegroundLight": "#ff942f",
+				"errorLens.infoBackground":"#00b7e420",
+				"errorLens.infoMessageBackground":"#00b7e419",
+				"errorLens.infoBackgroundLight":"#00b7e420",
+				"errorLens.infoForeground":"#00b7e4",
+				"errorLens.infoForegroundLight":"#00b7e4",
+				"errorLens.hintBackground":"#17a2a220",
+				"errorLens.hintMessageBackground":"#17a2a219",
+				"errorLens.hintBackgroundLight":"#17a2a220",
+				"errorLens.hintForeground":"#2faf64",
+				"errorLens.hintForegroundLight":"#2faf64",
+				"errorLens.statusBarIconErrorForeground": "#ff6464",
+				"errorLens.statusBarIconWarningForeground":"#fa973a",
+				"errorLens.statusBarErrorForeground":"#ff6464",
+				"errorLens.statusBarWarningForeground":"#fa973a",
+				"errorLens.statusBarInfoForeground":"#00b7e4",
+				"errorLens.statusBarHintForeground":"#2faf64",
+				"foreground": "#959cbd",
+				"panelTitle.activeBorder": "#3d59a1",
+				"panelTitle.activeForeground": "#bdc7f0",
+				"panelTitle.inactiveForeground": "#959cbd",
+				"tab.activeForeground": "#bdc7f0",
+				"tab.inactiveForeground": "#959cbd",
+				"breadcrumb.foreground": "#959cbd",
+				"breadcrumb.focusForeground": "#bdc7f0",
+				"breadcrumb.activeSelectionForeground": "#bdc7f0",
+				"statusBar.foreground": "#bdc7f0",
+				"list.focusForeground": "#bdc7f0",
+				"list.hoverForeground": "#bdc7f0",
+				"list.activeSelectionForeground": "#bdc7f0",
+				"list.inactiveSelectionForeground": "#bdc7f0",
+				"list.inactiveSelectionBackground": "#202330",
+				"sideBar.foreground": "#959cbd",
+				"dropdown.foreground": "#959cbd",
+				"menu.foreground": "#bdc7f0",
+				"menubar.selectionForeground": "#bdc7f0",
+				"input.foreground": "#959cbd",
+				"input.placeholderForeground": "#959cbd",
+				"activityBar.foreground": "#bdc7f0",
+				"activityBar.inactiveForeground": "#787c99",
+				"gitDecoration.ignoredResourceForeground": "#696d87",
+      }
+    },
+
+    
+
+		
+		
+		// per https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
+		// also have to configure workbench.colorCustomizations
+		"errorLens":{
+       "enabled": true,
+			 "enabledInMergeConflict": true,
+			 "fontSize": "18",
+			 "enabledDiagnosticLevels": [
+				"error",
+				"warning",
+				"info"
+			],
+			"severityText": [
+				"ERROR",
+				"WARNING",
+				"INFO",
+				"HINT"
+			],
+
+		},
+    // per https://gist.github.com/gaetschwartz/b5fed3ebf7594c54472c6ecf11eed2e1
+		"explorer.fileNesting.enabled": true,
+		"explorer.fileNesting.expand": false,
+		"explorer.fileNesting.patterns": {
+			"pubspec.yaml": ".flutter-plugins, .packages, .dart_tool, .flutter-plugins-dependencies, .metadata, .packages, pubspec.lock, build.yaml, analysis_options.yaml, pubspec_overrides.yaml, all_lint_rules.yaml",
+			".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
+			"readme.": "authors, backers.md, changelog, citation*, code_of_conduct.md, codeowners, contributing.md, contributors, copying, credits, governance.md, history.md, license*, maintainers, readme*, security.md, sponsors.md",
+			"*.dart": "$(capture).g.dart, $(capture).freezed.dart",
+		},
+		
+
+	},
+	// Do not need extensions recommended block unless multiroot
+}

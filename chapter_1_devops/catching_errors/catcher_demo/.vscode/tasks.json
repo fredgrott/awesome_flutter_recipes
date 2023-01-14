@@ -1,0 +1,223 @@
+{ // Created 3-2021 Fredrick Allan Grott
+  // Note: Not using compounds on the emulator and simulators yet as I do not have enough 
+  //       laptop ram but whoever is forking and modifying this can figure out how to add it.
+  //       Keeping things similar to Android Studio setup as these repos are being used 
+  //       to teach flutter app development using android studio and vscode.
+  //       I use emulator plugins to handle starting emulators and simulators.
+  //
+  //       Also, note that some of this stuff is platformOS specifc. Take it and modify according 
+  //       to your platformOS shell specifics.
+  //
+  //       DevOPS requirements:
+  //            junit2html python script installed and env propety path set
+  //            lcov.imfo genhtml script installed, if on windows then use chocolatey install
+  //            dartcdoemetrics, junitreport flutter bin installed
+  //            reports folder with docs, metrics, coverage, and test folders
+  //            reports folder docs/src and docs/out created
+	"version": "2.0.0",
+	"tasks": [
+     
+    
+    
+    
+
+    { // build an android apk
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "build",
+        "apk"
+      ],
+      "group": "build",
+      "problemMatcher": [],
+      "label": "flutter: flutter build apk"
+    },
+    { // build and ios app
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "build",
+        "ios"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "label": "flutter: flutter build ios"
+    },
+    { // install a flutter app
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "install"
+      ],
+      "problemMatcher": [],
+      "label": "flutter: flutter install"
+    },
+    {  // get flutter(dart) packages
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "pub",
+        "get"
+      ],
+      "problemMatcher": [],
+      "label": "flutter: flutter pub get"
+    },
+    { // upgrade flutter packages
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "pub",
+        "upgrade"
+      ],
+      "problemMatcher": [],
+      "label": "flutter: flutter pub upgrade"
+    },
+
+    // Other tools tasks
+
+    {
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "pub",
+        "run",
+        "dart_code_metrics:metrics",
+        "analyze",
+        "lib",
+        "--reporter=html",
+        "--output-directory=.\\reports\\metrics"
+      ],
+      "problemMatcher": [],
+      "label": "flutter: dart code metrics"
+
+    },
+
+    {
+       "type": "flutter",
+       "command": "flutter",
+       "args": [
+          "pub",
+          "global",
+          "run",
+          "dcdg",
+          "--search-path=lib",
+          "--output=reports\\docs\\diagrams\\src\\diagrams.puml"
+       ],
+       "problemMatcher": [],
+       "label": "flutter: dcdg"
+
+    },
+
+    {
+       "type": "flutter",
+       "command": "flutter",
+       "args": [
+          "test",
+          "--coverage",
+          "--reporter=expanded",
+          "--coverage-path=.\\reports\\coverage\\lcov.info"
+       ],
+       "problemMatcher": [],
+       "label": "flutter: test coverage lcov.info gen"
+
+
+    },
+
+    {
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "analyze",
+        ">",
+        ".\\reports\\analyzer_report.txt",
+        "--no-fatal-infos --no-fatal-warnings"
+      ],
+      "problemMatcher": [],
+      "label": "flutter: analyze report gen"
+
+
+     },
+
+     {
+       "type": "shell",
+       "windows": {
+        "command": "perl","args": [
+          "C://ProgramData//chocolatey//lib//lcov//tools//bin//genhtml reports//coverage//lcov.info",
+          "-o reports//coverage//html",
+        ],
+       },
+       "linux": {
+
+        "command": "perl",
+        "args": [
+          "genthml reports//coverage//lcov.info",
+          "-o reports//coverage//html",
+        ]
+
+       },
+       "osx": {
+        "command": "perl",
+        "args": [
+          "genhtml reports//coverage///lcov.info",
+          "-o reports//coverage/html",
+        ]
+
+       },
+       "dependsOn": [
+         "flutter: test coverage lcov.info gen"
+       ],
+        "problemMatcher": [],
+        "label": "flutter: lcov.info into html"
+
+     },
+
+     
+
+
+
+     // per https://pub.dev/packages/junitreport
+     {
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "test",
+        "--machine",
+        "|",
+        "tojunit",
+        "--output",
+        "reports\\test\\unittest.xml"
+      ],
+      "problemMatcher":[],
+      "label": "flutter: unit test xml"
+     },
+
+     // this is the only place where we break best practices of defining each plat shell as 
+     // there are no plat differences for running the pythong junit2html script
+     {
+      "type": "shell",
+      "command": "junit2html",
+      "args": [
+        "reports\\test\\unittest.xml",
+        "reports\\test\\unittest.html"
+      ],
+      "dependsOn": [
+        "flutter: unit test xml"
+      ],
+      "problemMatcher":[],
+      "label": "Flutter: unit test html"
+
+     },
+
+
+
+
+
+     
+
+
+
+  ]
+}
