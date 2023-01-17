@@ -7,19 +7,46 @@
 // Flutter Team.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/selection.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/text_inputs.dart';
+
 
 class SecondComponentList extends StatelessWidget {
   const SecondComponentList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    
+    
+    
+
     return ListView(
       children: const <Widget>[
         Selection(),
         TextInputs(),
-      ],
+      ]
+          .animate(
+            interval: 800.ms,
+          )
+          .fadeIn(
+            duration: 900.ms,
+            delay: 700.ms,
+          )
+          .saturate(
+            begin: 0.25,
+            end: 1.0,
+            delay: 400.ms,
+            duration: 900.ms,
+          )
+          .move(
+            begin: const Offset(
+              -16,
+              0,
+            ),
+            curve: Curves.easeOutQuad,
+          ),
+          
     );
   }
 }

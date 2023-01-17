@@ -2,13 +2,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 //
-// Original part of Flutter Samples Experimental 
+// Original part of Flutter Samples Experimental
 // Material 3 Demo under BSD License Copyright 2021
 // Flutter Team.
 
 // ignore_for_file: avoid_positional_boolean_parameters, avoid_redundant_argument_values
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mdthree_one/src/domain/stuff.dart';
 import 'package:mdthree_one/src/presentation/app/widgets/destinations.dart';
 import 'package:mdthree_one/src/presentation/app/widgets/navigation_transition.dart';
@@ -82,64 +83,63 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         // scroll here to handle sizes where
         // content is hidden due to screen size
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  const Text('Brightness'),
-                  const Spacer(),
-                  Switch(
-                    value: useLightMode,
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                const Text('Brightness'),
+                const Spacer(),
+                Switch(
+                  value: useLightMode,
+                  //
+                  // ignore: prefer-extracting-callbacks
+                  onChanged: (_) {
+                    handleBrightnessChange();
+                  },
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                if (useMaterial3)
+                  const Text('Material 3')
+                else
+                  const Text('Material 2'),
+                const Spacer(),
+                Switch(
+                  value: useMaterial3,
+                  //
+                  // ignore: prefer-extracting-callbacks
+                  onChanged: (_) {
+                    handleMaterialVersionChange();
+                  },
+                ),
+              ],
+            ),
+            const Divider(),
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxHeight: 200.0,
+              ),
+              child: GridView.count(
+                crossAxisCount: 3,
+                children: List.generate(
+                  ColorSeed.values.length,
+                  (i) => IconButton(
+                    color: ColorSeed.values[i].color,
                     //
                     // ignore: prefer-extracting-callbacks
-                    onChanged: (_) {
-                      handleBrightnessChange();
+                    onPressed: () {
+                      handleColorSelect(i);
                     },
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  if (useMaterial3)
-                    const Text('Material 3')
-                  else
-                    const Text('Material 2'),
-                  const Spacer(),
-                  Switch(
-                    value: useMaterial3,
-                    //
-                    // ignore: prefer-extracting-callbacks
-                    onChanged: (_) {
-                      handleMaterialVersionChange();
-                    },
-                  ),
-                ],
-              ),
-              const Divider(),
-              ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxHeight: 200.0,
-                ),
-                child: GridView.count(
-                  crossAxisCount: 3,
-                  children: List.generate(
-                    ColorSeed.values.length,
-                    (i) => IconButton(
-                      color: ColorSeed.values[i].color,
-                      //
-                      // ignore: prefer-extracting-callbacks
-                      onPressed: () {
-                        handleColorSelect(i);
-                      },
-                      icon: const Icon(Icons.circle),
-                    ),
+                    icon: const Icon(Icons.circle),
                   ),
                 ),
               ),
-            ],
-          ),
-      
+            ),
+          ],
+        ),
       );
 
   @override
@@ -148,6 +148,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  // All MediaQueries are inherited widget subtype calls thus didChangeDependencies
+  // State object override is used here to actually act as lazy polling for
+  // screen size changes. Or to put another way, the MediaQuery calls that
+  // we care about in our Flutter App should be call and handled in the
+  // shared scaffold at the override didChangeDependencies method call.
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -192,12 +197,16 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     );
   }
 
+  // setState indicates that framework should schedule a build for
+  // the State object.
   void handleScreenChanged(int screenSelected) {
     setState(() {
       screenIndex = screenSelected;
     });
   }
 
+  // setState indicates that framework should schedule a build for
+  // the State object.
   void handleBrightnessChange() {
     setState(() {
       useLightMode = !useLightMode;
@@ -209,6 +218,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     });
   }
 
+  // setState indicates that framework should schedule a build for
+  // the State object.
   void handleMaterialVersionChange() {
     setState(() {
       useMaterial3 = !useMaterial3;
@@ -220,6 +231,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     });
   }
 
+  // setState indicates that framework should schedule a build for
+  // the State object.
   void handleColorSelect(int value) {
     setState(() {
       colorSelected = ColorSeed.values[value];
@@ -328,7 +341,22 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 
   PreferredSizeWidget createAppBar() {
     return AppBar(
-      title: useMaterial3 ? const Text('Material 3') : const Text('Material 2'),
+      title: useMaterial3 ? const Text('Material 3').animate(onPlay: (controller) => controller.repeat())
+              .shimmer(duration: 1200.ms, color: Theme.of(context).colorScheme.primary.withOpacity(0.65),)
+              .animate()
+              .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad,).slide() 
+              : const Text('Material 2')
+              .animate(onPlay: (controller) => controller.repeat())
+              .shimmer(
+                duration: 1200.ms,
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.65),
+              )
+              .animate()
+              .fadeIn(
+                duration: 1200.ms,
+                curve: Curves.easeOutQuad,
+              )
+              .slide(),
       actions: !showMediumSizeLayout && !showLargeSizeLayout
           ? [
               brightnessButton(),
@@ -342,6 +370,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // What is being animated as the child is the NavigationTransition
       home: AnimatedBuilder(
         animation: controller,
         builder: (
@@ -354,9 +383,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             railAnimation: railAnimation,
             navigationRail: NavigationRail(
               extended: showLargeSizeLayout,
-              // orginal had Expanded, but that is wrong as we want 
-              // the content to expand in loose fashion not tight as then 
-              // we never have to use a scrollview wrapper to account for 
+              // orginal had Expanded, but that is wrong as we want
+              // the content to expand in loose fashion not tight as then
+              // we never have to use a scrollview wrapper to account for
               // screen size changing to smaller height sizes.
               trailing: Flexible(
                 fit: FlexFit.loose,

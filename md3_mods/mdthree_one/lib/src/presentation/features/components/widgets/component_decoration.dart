@@ -28,23 +28,33 @@ class ComponentDecoration extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: Column(
           children: [
+            // Got RenderFlex errors, problem solution might be
+            // adding mainAxisSize: MainAxisSize.min to Rows 
+            // and wrappping itmes like Text in Flexibilie 
+            // Widgets.
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  label,
-                  style: Theme.of(context).textTheme.titleSmall,
+                Flexible(
+                  child: Text(
+                    label,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
                 ),
-                Tooltip(
-                  message: tooltipMessage,
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.0),
-                    child: Icon(
-                      Icons.info_outline,
-                      size: 16,
+                Flexible(
+                  child: Tooltip(
+                    message: tooltipMessage,
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5.0),
+                      child: Icon(
+                        Icons.info_outline,
+                        size: 16,
+                      ),
                     ),
                   ),
                 ),
+                
               ],
             ),
             ConstrainedBox(

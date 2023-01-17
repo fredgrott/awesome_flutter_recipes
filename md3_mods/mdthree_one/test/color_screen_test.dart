@@ -24,7 +24,7 @@ void main() {
         449,
       );
       addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
-      await tester.pumpWidget(const MaterialApp(home: ColorPalettesScreen()));
+      await tester.pumpWidget(MaterialApp(home: MyApp()));
 
       expect(
         find.text('Light Theme'),

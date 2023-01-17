@@ -26,10 +26,15 @@ class _RadiosState extends State<Radios> {
     return ComponentDecoration(
       label: 'Radio button',
       tooltipMessage: 'Use Radio<T> to show radio buttons',
+      // Got RenderFlex errors, problem solution might be
+      // adding mainAxisSize: MainAxisSize.min to Rows
+      // and wrappping itmes like Text in Flexibilie
+      // Widgets.
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Radio<Value>(
+          Flexible(child: Radio<Value>(
             value: Value.first,
             groupValue: _value,
             //
@@ -39,8 +44,8 @@ class _RadiosState extends State<Radios> {
                 _value = value;
               });
             },
-          ),
-          Radio<Value>(
+          ),),
+          Flexible(child: Radio<Value>(
             value: Value.second,
             groupValue: _value,
             //
@@ -50,7 +55,8 @@ class _RadiosState extends State<Radios> {
                 _value = value;
               });
             },
-          ),
+          ),),
+          
         ],
       ),
     );

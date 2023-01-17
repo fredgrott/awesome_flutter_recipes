@@ -6,6 +6,7 @@
 // Material 3 Demo under BSD License Copyright 2021
 // Flutter Team.
 
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/component_decoration.dart';
 
@@ -18,10 +19,14 @@ class Dialogs extends StatefulWidget {
 
 class _DialogsState extends State<Dialogs> {
   void openDialog(BuildContext context) {
-    showDialog<void>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Basic Dialog Title'),
+    // Original was showDialog, but we can switch this to showModal from
+    // the animations package in order to add MD3 container animations.
+
+    showModal(
+        context: context,
+        configuration: const FadeScaleTransitionConfiguration(),
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Basic Dialog Title'),
         content: const Text(
           'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.',
         ),
@@ -35,8 +40,28 @@ class _DialogsState extends State<Dialogs> {
             child: const Text('Action'),
           ),
         ],
-      ),
-    );
+        ),
+      );
+
+    //showDialog<void>(
+      //context: context,
+      //builder: (context) => AlertDialog(
+        //title: const Text('Basic Dialog Title'),
+       // content: const Text(
+        //  'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.',
+        //),
+        //actions: <Widget>[
+       //   TextButton(
+       //     onPressed: () => Navigator.of(context).pop(),
+       //     child: const Text('Dismiss'),
+       //   ),
+       //   TextButton(
+        //    onPressed: () => Navigator.of(context).pop(),
+        //    child: const Text('Action'),
+        //  ),
+       // ],
+     // ),
+    //);
   }
 
   @override

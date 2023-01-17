@@ -7,12 +7,14 @@
 // Flutter Team.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/communication.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/containment.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/material_actions.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/navigation.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/selection.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/text_inputs.dart';
+
 
 class FirstComponentList extends StatelessWidget {
   const FirstComponentList({
@@ -28,17 +30,25 @@ class FirstComponentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+
     return ListView(
-      children: [
-        const MaterialActions(),
-        const Communication(),
-        const Containment(),
-        Navigation(scaffoldKey: scaffoldKey),
-        if (!showSecondList) ...[
-          const Selection(),
-          const TextInputs(),
-        ],
-      ],
+        // Same as children: AnimateList(children: [])
+        children: [
+          const MaterialActions(),
+          const Communication(),
+          const Containment(),
+          Navigation(scaffoldKey: scaffoldKey),
+          if (!showSecondList) ...[
+            const Selection(),
+            const TextInputs(),
+          ],
+        ].animate(interval: 600.ms,)
+        .fadeIn(duration: 900.ms, delay: 400.ms,)
+        .saturate(begin: 0.25, end: 1.0, delay: 400.ms, duration: 900.ms,)
+        .move(begin: const Offset(-16, 0,), curve: Curves.easeOutQuad,),
+        ///     interval: 100.ms,
+       
     );
   }
 }

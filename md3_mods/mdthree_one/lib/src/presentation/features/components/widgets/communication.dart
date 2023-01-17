@@ -7,6 +7,7 @@
 // Flutter Team.
 
 import 'package:flutter/material.dart';
+
 import 'package:mdthree_one/src/presentation/features/components/widgets/component_decoration.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/navigation_bars.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/progress_indicators.dart';
@@ -17,6 +18,8 @@ class Communication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+
     return const ComponentGroupDecoration(
       label: 'Communication',
       children: [

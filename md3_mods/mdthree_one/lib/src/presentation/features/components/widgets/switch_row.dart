@@ -35,10 +35,15 @@ class _SwitchRowState extends State<SwitchRow> {
 
   @override
   Widget build(BuildContext context) {
+    // Got RenderFlex errors, problem solution might be
+    // adding mainAxisSize: MainAxisSize.min to Rows
+    // and wrappping itmes like Text in Flexibilie
+    // Widgets.
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Switch(
+        Flexible(child: Switch(
           value: value0,
           onChanged: widget.isEnabled
               ? (value) {
@@ -47,8 +52,8 @@ class _SwitchRowState extends State<SwitchRow> {
                   });
                 }
               : null,
-        ),
-        Switch(
+        ),),
+        Flexible(child: Switch(
           value: value1,
           onChanged: widget.isEnabled
               ? (value) {
@@ -58,7 +63,8 @@ class _SwitchRowState extends State<SwitchRow> {
                 }
               : null,
           thumbIcon: thumbIcon,
-        ),
+        ),),
+        
       ],
     );
   }

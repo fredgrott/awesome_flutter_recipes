@@ -27,12 +27,17 @@ class _CheckboxRowState extends State<CheckboxRow> {
 
   @override
   Widget build(BuildContext context) {
+    // Got RenderFlex errors, problem solution might be
+    // adding mainAxisSize: MainAxisSize.min to Rows
+    // and wrappping itmes like Text in Flexibilie
+    // Widgets.
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         //
         // ignore: prefer-extracting-callbacks
-        Checkbox(
+        Flexible(child: Checkbox(
           value: isChecked0,
           tristate: true,
           // ignore: prefer-extracting-callbacks
@@ -42,10 +47,8 @@ class _CheckboxRowState extends State<CheckboxRow> {
             });
           },
           isError: widget.isError,
-        ),
-        //
-        // ignore: prefer-extracting-callbacks
-        Checkbox(
+        ),),
+        Flexible(child: Checkbox(
           value: isChecked1,
           tristate: true,
           // ignore: prefer-extracting-callbacks
@@ -55,10 +58,10 @@ class _CheckboxRowState extends State<CheckboxRow> {
             });
           },
           isError: widget.isError,
-        ),
+        ),),
         //
         // ignore: prefer-extracting-callbacks
-        Checkbox(
+        Flexible(child: Checkbox(
           value: isChecked2,
           tristate: true,
           // ignore: prefer-extracting-callbacks
@@ -68,13 +71,16 @@ class _CheckboxRowState extends State<CheckboxRow> {
             });
           },
           isError: widget.isError,
-        ),
-        Checkbox(
+        ),),
+        //
+        // ignore: prefer-extracting-callbacks
+        Flexible(child: Checkbox(
           value: true,
           tristate: true,
           onChanged: null,
           isError: widget.isError,
-        ),
+        ),),
+        
       ],
     );
   }

@@ -26,37 +26,38 @@ class _MultipleChoiceState extends State<MultipleChoice> {
   @override
   Widget build(BuildContext context) {
     return SegmentedButton<Sizes>(
-      segments: const <ButtonSegment<Sizes>>[
-        ButtonSegment<Sizes>(
-          value: Sizes.extraSmall,
-          label: Text('XS'),
-        ),
-        ButtonSegment<Sizes>(
-          value: Sizes.small,
-          label: Text('S'),
-        ),
-        ButtonSegment<Sizes>(
-          value: Sizes.medium,
-          label: Text('M'),
-        ),
-        ButtonSegment<Sizes>(
-          value: Sizes.large,
-          label: Text('L'),
-        ),
-        ButtonSegment<Sizes>(
-          value: Sizes.extraLarge,
-          label: Text('XL'),
-        ),
-      ],
-      selected: selection,
-      //
-      // ignore: prefer-extracting-callbacks
-      onSelectionChanged: (newSelection) {
-        setState(() {
-          selection = newSelection;
-        });
-      },
-      multiSelectionEnabled: true,
-    );
+        segments: const <ButtonSegment<Sizes>>[
+          ButtonSegment<Sizes>(
+            value: Sizes.extraSmall,
+            label: Text('XS'),
+          ),
+          ButtonSegment<Sizes>(
+            value: Sizes.small,
+            label: Text('S'),
+          ),
+          ButtonSegment<Sizes>(
+            value: Sizes.medium,
+            label: Text('M'),
+          ),
+          ButtonSegment<Sizes>(
+            value: Sizes.large,
+            label: Text('L'),
+          ),
+          ButtonSegment<Sizes>(
+            value: Sizes.extraLarge,
+            label: Text('XL'),
+          ),
+        ],
+        selected: selection,
+        //
+        // ignore: prefer-extracting-callbacks
+        onSelectionChanged: (newSelection) {
+          setState(() {
+            selection = newSelection;
+          });
+        },
+        multiSelectionEnabled: true,
+      );
+    
   }
 }

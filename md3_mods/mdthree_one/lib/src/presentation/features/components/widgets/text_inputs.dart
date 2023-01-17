@@ -7,6 +7,7 @@
 // Flutter Team.
 
 import 'package:flutter/material.dart';
+
 import 'package:mdthree_one/src/presentation/features/components/widgets/component_decoration.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/text_fields.dart';
 
@@ -15,6 +16,8 @@ class TextInputs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+
     return const ComponentGroupDecoration(
       label: 'Text inputs',
       children: [TextFields()],

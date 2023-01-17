@@ -7,6 +7,7 @@
 // Flutter Team.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mdthree_one/src/presentation/features/typography/widgets/text_style_example.dart';
 
 class TypographyScreen extends StatelessWidget {
@@ -82,7 +83,9 @@ class TypographyScreen extends StatelessWidget {
             name: 'Body Small',
             style: textTheme.bodySmall!,
           ),
-        ],
+        ].animate(interval: 600.ms,)
+        .fadeIn(duration: 900.ms, delay: 300.ms,)
+        .move(begin: const Offset(-16, 0,), curve: Curves.easeOutQuad,),
       ),
     );
   }

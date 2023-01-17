@@ -29,8 +29,13 @@ class FloatingActionButtons extends StatelessWidget {
           return screenWidth < 375.0
               ? Column(
                   children: [
+                    // Got RenderFlex errors, problem solution might be
+                    // adding mainAxisSize: MainAxisSize.min to Rows
+                    // and wrappping itmes like Text in Flexibilie
+                    // Widgets.
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Expanded(
                           child: Center(
@@ -49,7 +54,8 @@ class FloatingActionButtons extends StatelessWidget {
                               // ignore: no-empty-block
                               onPressed: () {},
                               icon: const Icon(Icons.add),
-                              label: const Text('Create'),
+                              label: const Flexible(child: Text('Create'),),
+                              
                             ),
                           ),
                         ),
@@ -58,6 +64,7 @@ class FloatingActionButtons extends StatelessWidget {
                     colDivider,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Expanded(
                           child: Center(
@@ -85,6 +92,7 @@ class FloatingActionButtons extends StatelessWidget {
                 )
               : Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     FloatingActionButton.small(
                       //
@@ -103,7 +111,8 @@ class FloatingActionButtons extends StatelessWidget {
                       // ignore: no-empty-block
                       onPressed: () {},
                       icon: const Icon(Icons.add),
-                      label: const Text('Create'),
+                      label: const Flexible(child: Text('Create'),),
+                      
                     ),
                     FloatingActionButton.large(
                       //

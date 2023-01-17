@@ -6,7 +6,9 @@
 // Material 3 Demo under BSD License Copyright 2021
 // Flutter Team.
 
+import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
+
 import 'package:mdthree_one/src/presentation/features/elevation/widgets/elevation_card.dart';
 import 'package:mdthree_one/src/presentation/features/elevation/widgets/elevations.dart';
 
@@ -39,8 +41,39 @@ class ElevationGrid extends StatelessWidget {
         .toList();
   }
 
+  Widget elevationGridItem(
+    BuildContext context,
+    int index,
+    Animation<double> animation,
+    List<ElevationInfo> card,
+  ) =>
+      FadeTransition(
+        opacity: Tween<double>(
+          begin: 0,
+          end: 1,
+        ).animate(animation),
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 0.1,),
+            end: Offset.zero,
+          ).animate(
+            CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeInOut,
+            ),
+          ),
+          child: ElevationCard(
+            info: card[index],
+            shadowColor: shadowColor,
+            surfaceTint: surfaceTintColor,
+          ),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
+    final scrollController = ScrollController();
+
     return SliverPadding(
       padding: const EdgeInsets.all(8),
       sliver: SliverLayoutBuilder(
@@ -49,20 +82,47 @@ class ElevationGrid extends StatelessWidget {
           constraints,
         ) {
           return constraints.crossAxisExtent < narrowScreenWidthThreshold
-              ? SliverGrid.count(
-                  crossAxisCount: 3,
-                  children: elevationCards(
-                    shadowColor,
-                    surfaceTintColor,
-                  ),
-                )
-              : SliverGrid.count(
-                  crossAxisCount: 6,
-                  children: elevationCards(
-                    shadowColor,
-                    surfaceTintColor,
-                  ),
+              ? LiveSliverGrid(
+                itemBuilder: (context, index, animation,) {
+                  return elevationGridItem(context, index, animation, elevations,);
+                }, 
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                  ), 
+                  itemCount: 6, 
+                  controller: scrollController, 
+                  visibleFraction: 0.001, 
+                  showItemInterval: const Duration(milliseconds: 150), 
+                  showItemDuration: const Duration(milliseconds: 750),
+                ): LiveSliverGrid(
+                    itemBuilder: (context, index, animation,) {
+                      return elevationGridItem(context, index, animation, elevations,);
+                    }, 
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 6,
+                    ),
+                    itemCount: 6, 
+                    controller: scrollController, 
+                    visibleFraction: 0.001, 
+                    showItemInterval: const Duration(milliseconds: 150), 
+                    showItemDuration: const Duration(milliseconds: 750),
+
                 );
+              
+             // SliverGrid.count(
+               //   crossAxisCount: 3,
+               //   children: elevationCards(
+               //     shadowColor,
+               //     surfaceTintColor,
+               //   ),
+               // )
+             // : SliverGrid.count(
+              //    crossAxisCount: 6,
+             //     children: elevationCards(
+             //       shadowColor,
+             //       surfaceTintColor,
+               //   ),
+              //  );
         },
       ),
     );

@@ -9,6 +9,7 @@
 // ignore_for_file: prefer_final_locals
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mdthree_one/src/presentation/features/color/widgets/color_scheme_view.dart';
 import 'package:mdthree_one/src/presentation/features/color/widgets/color_stuff.dart';
 
@@ -66,7 +67,21 @@ class ColorPalettesScreen extends StatelessWidget {
                       divider,
                       schemeLabel('Dark Theme'),
                       schemeView(darkTheme),
-                    ],
+                    ]
+                        .animate(
+                          interval: 600.ms,
+                        )
+                        .fadeIn(
+                          duration: 900.ms,
+                          delay: 300.ms,
+                        )
+                        .move(
+                          begin: const Offset(
+                            -16,
+                            0,
+                          ),
+                          curve: Curves.easeOutQuad,
+                        ),
                   ),
                 )
               : SingleChildScrollView(
@@ -90,7 +105,9 @@ class ColorPalettesScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                      ],
+                      ].animate(interval: 600.ms,)
+        .fadeIn(duration: 900.ms, delay: 300.ms,)
+        .move(begin: const Offset(-16, 0,), curve: Curves.easeOutQuad,),
                     ),
                   ),
                 );
