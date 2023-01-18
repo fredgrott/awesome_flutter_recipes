@@ -8,10 +8,11 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:mdthree_one/src/presentation/features/components/widgets/bottom_sheet_section.dart';
+
 import 'package:mdthree_one/src/presentation/features/components/widgets/cards.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/component_decoration.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/dialogs.dart';
+import 'package:mdthree_one/src/presentation/features/components/widgets/fg_bottom_sheet_section.dart';
 
 class Containment extends StatelessWidget {
   const Containment({super.key});
@@ -20,12 +21,12 @@ class Containment extends StatelessWidget {
   Widget build(BuildContext context) {
     
 
-    return const ComponentGroupDecoration(
+    return ComponentGroupDecoration(
       label: 'Containment',
       children: [
-        BottomSheetSection(),
-        Cards(),
-        Dialogs(),
+        FGBottomSheetSection(),
+        const Cards(),
+        const Dialogs(),
       ],
     );
   }

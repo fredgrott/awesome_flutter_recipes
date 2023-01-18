@@ -1,18 +1,36 @@
 // Copyright 2023 Fredrick Allan Grott. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
-//
-// Original part of Flutter Samples Experimental
-// Material 3 Demo under BSD License Copyright 2021
-// Flutter Team.
-
-// ignore_for_file: avoid_redundant_argument_values
 
 import 'package:flutter/material.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/component_decoration.dart';
 
-class BottomSheetSection extends StatelessWidget {
-  const BottomSheetSection({super.key});
+class FGBottomSheetSection extends StatefulWidget {
+  @override
+  State<FGBottomSheetSection> createState() => _FGBottomSheetSectionState();
+}
+
+class _FGBottomSheetSectionState extends State<FGBottomSheetSection> with TickerProviderStateMixin {
+  late AnimationController controller;
+  @override
+  void initState() {
+    super.initState();
+    // Initialize AnimationController
+    initController();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  void initController() {
+    controller = BottomSheet.createAnimationController(this);
+    controller.duration = const Duration(milliseconds: 100);
+    controller.reverseDuration = const Duration(milliseconds: 100);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -91,38 +109,39 @@ class BottomSheetSection extends StatelessWidget {
         // ignore: prefer-extracting-callbacks
         onPressed: () {
           showModalBottomSheet<void>(
-            context: context,
+            context: context, 
             builder: (context) {
               return SizedBox(
-                height: 250,
+                height: 250, 
                 child: Column(
                   children: [
                     Expanded(
-                      flex: 3,
+                      flex: 3, 
                       child: ListView(
-                        scrollDirection: Axis.horizontal,
+                        scrollDirection: Axis.horizontal, 
                         children: buttonList,
                       ),
-                    ),
+                    ), 
                     const Divider(
-                      thickness: 2,
-                      indent: 20,
+                      thickness: 2, 
+                      indent: 20, 
                       endIndent: 20,
-                    ),
+                    ), 
                     Expanded(
-                      flex: 2,
+                      flex: 2, 
                       child: Center(
                         child: FilledButton.tonal(
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => Navigator.pop(context), 
                           child: const Text('Close BottomSheet'),
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               );
-            },
-          );
+            }, 
+            transitionAnimationController: controller,
+          ).whenComplete(() => initController());
         },
         child: const Text(
           'Show Modal bottom sheet',
@@ -131,4 +150,5 @@ class BottomSheetSection extends StatelessWidget {
       ),
     );
   }
+
 }

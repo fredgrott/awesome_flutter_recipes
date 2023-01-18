@@ -8,6 +8,7 @@
 
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:mdthree_one/src/presentation/features/components/widgets/component_decoration.dart';
 
 class Dialogs extends StatefulWidget {
@@ -22,11 +23,11 @@ class _DialogsState extends State<Dialogs> {
     // Original was showDialog, but we can switch this to showModal from
     // the animations package in order to add MD3 container animations.
 
-    showModal(
-        context: context,
-        configuration: const FadeScaleTransitionConfiguration(),
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('Basic Dialog Title'),
+    showAnimatedDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Basic Dialog Title'),
         content: const Text(
           'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.',
         ),
@@ -40,27 +41,51 @@ class _DialogsState extends State<Dialogs> {
             child: const Text('Action'),
           ),
         ],
-        ),
-      );
+      ),
+      animationType: DialogTransitionType.rotate3D,
+      curve: Curves.fastOutSlowIn,
+      duration: const Duration(seconds: 1),
+    );
+
+    //showModal(
+      //context: context,
+      //configuration: const FadeScaleTransitionConfiguration(),
+     // builder: (BuildContext context) => AlertDialog(
+      //  title: const Text('Basic Dialog Title'),
+     //   content: const Text(
+      //    'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.',
+     //   ),
+     //   actions: <Widget>[
+     //     TextButton(
+     //       onPressed: () => Navigator.of(context).pop(),
+     //       child: const Text('Dismiss'),
+     //     ),
+     //     TextButton(
+     //       onPressed: () => Navigator.of(context).pop(),
+     //       child: const Text('Action'),
+      //    ),
+      //  ],
+     // ),
+    //);
 
     //showDialog<void>(
-      //context: context,
-      //builder: (context) => AlertDialog(
-        //title: const Text('Basic Dialog Title'),
-       // content: const Text(
-        //  'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.',
-        //),
-        //actions: <Widget>[
-       //   TextButton(
-       //     onPressed: () => Navigator.of(context).pop(),
-       //     child: const Text('Dismiss'),
-       //   ),
-       //   TextButton(
-        //    onPressed: () => Navigator.of(context).pop(),
-        //    child: const Text('Action'),
-        //  ),
-       // ],
-     // ),
+    //context: context,
+    //builder: (context) => AlertDialog(
+    //title: const Text('Basic Dialog Title'),
+    // content: const Text(
+    //  'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.',
+    //),
+    //actions: <Widget>[
+    //   TextButton(
+    //     onPressed: () => Navigator.of(context).pop(),
+    //     child: const Text('Dismiss'),
+    //   ),
+    //   TextButton(
+    //    onPressed: () => Navigator.of(context).pop(),
+    //    child: const Text('Action'),
+    //  ),
+    // ],
+    // ),
     //);
   }
 
