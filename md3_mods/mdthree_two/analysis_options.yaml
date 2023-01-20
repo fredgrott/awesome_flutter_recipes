@@ -1,0 +1,172 @@
+# This file configures the analyzer, which statically analyzes Dart code to
+# check for errors, warnings, and lints.
+#
+# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
+# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
+# invoked from the command line by running `flutter analyze`.
+
+# The following line activates a set of recommended lints for Flutter apps,
+# packages, and plugins designed to encourage good coding practices.
+# strict lint set from Passy's lint package
+include: package:lint/strict.yaml
+
+analyzer:
+  exclude:
+
+  plugins:
+     - dart_code_metrics
+dart_code_metrics:
+  anti-patterns:
+     - long-method
+     - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 20
+    halstead-volume: 150
+    maximum-nesting-level: 5
+    number-of-parameters: 4
+    source-lines-of-code: 50
+    lines-of-code: 100
+    maintainability-index: 50
+    number-of-methods: 10
+    weight-of-class: 0.33
+    technical-debt:
+      threshold: 1
+      todo-cost: 161
+      ignore-cost: 320
+      ignore-for-file-cost: 396
+      as-dynamic-cost: 322
+      deprecated-annotations-cost: 37
+      file-nullsafety-migration-cost: 41
+      unit-type: "USD"
+
+  metrics-exclude:
+    - test/**
+  rules: 
+    # common
+    - arguments-ordering:
+        child-last: true
+    # avoid-banned-imports
+    - avoid-cascade-after-if-null 
+    - avoid-collection-methods-with-unrelated-types 
+    - avoid-double-slash-imports 
+    - avoid-duplicate-exports
+    - avoid-dynamic
+    - avoid-global-state
+    # - avoid-ignoring-return-values 
+    # - avoid-late-keyword:
+        # allow-initialized: true
+    - avoid-missing-enum-constant-in-map 
+    - avoid-nested-conditional-expressions
+    - avoid-non-ascii-symbols
+    # - avoid-non-null-assertion
+    - avoid-passing-async-when-sync-expected
+    # - avoid-redundant-async
+    - avoid-throw-in-catch-block
+    # - avoid-top-level-members-in-tests
+    - avoid-unnecessary-conditional
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters 
+    - ban-name
+    - binary-expression-operand-order
+    - double-literal-format
+    # - format-comment:
+       # only-doc-comments: false
+        #ignored-patterns:
+          # - ^ cSpell.*
+    - list-all-equatable-fields
+    - member-ordering 
+    - missing-test-assertion 
+    - newline-before-return
+    - no-boolean-literal-compare 
+    - no-empty-block
+    - no-equal-arguments:
+        ignored-parameters:
+          - height
+          - width
+    - no-equal-then-else
+    # - no-magic-number:
+        # allowed: [3.14, 100, 12]
+    - no-object-declaration 
+    - prefer-async-await
+    # - prefer-commenting-analyzer-ignores
+    - prefer-conditional-expressions:
+        ignore-nested: true
+    - prefer-correct-identifier-length:
+        exceptions: [ 'a' ]
+        max-identifier-length: 30
+        min-identifier-length: 4
+    - prefer-correct-test-file-name
+    - prefer-correct-type-name:
+        excluded: [ 'exampleExclude' ]
+        min-length: 3
+        max-length: 40
+    - prefer-enums-by-name
+    - prefer-first
+    - prefer-iterable-of
+    - prefer-last
+    - prefer-match-file-name
+    - prefer-moving-to-variable:
+        allowed-duplicated-chains: 23
+    # - prefer-static-class:
+       # ignore-annotations:
+        #  - allowedAnnotation
+       # ignore-private: true
+      #  ignore-names:
+        #  - (.*)Provider
+         # - use(.*)
+    - prefer-trailing-comma:
+        break-on: 2
+    - tag-name:
+        var-names: [_kTag]
+        strip-prefix: _
+        strip-postfix: State
+    # flutter
+    - always-remove-listener
+    - avoid-border-all
+    # - avoid-returning-widgets:
+        # ignored-names:
+         # - testFunction
+        # ignored-annotations:
+         # - allowedAnnotation
+    - avoid-shrink-wrap-in-lists
+    - avoid-unnecessary-setstate
+    - avoid-expanded-as-spacer
+    - avoid-wrapping-inpadding
+    - check-for-equals-in-render-object-setters
+    - consistent-update-render-object
+    - prefer-const-border-radius
+    - prefer-correct-edge-insets-constructor
+    - prefer-extracting-callbacks
+    - prefer-single-widget-per-file
+    - prefer-using-list-view
+    - use-setstate-synchronously:
+        methods:
+          - setState
+          - yourMethod
+    # intl
+    - prefer-intl-name
+    - prefer-provide-intl-description
+    - provide-correct-intl-args
+    
+
+
+linter:
+  # The lint rules applied to this project can be customized in the
+  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
+  # included above or to enable additional rules. A list of all available lints
+  # and their documentation is published at
+  # https://dart-lang.github.io/linter/lints/index.html.
+  #
+  # Instead of disabling a lint rule for the entire project in the
+  # section below, it can also be suppressed for a single line of code
+  # or a specific dart file by using the `// ignore: name_of_lint` and
+  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
+  # producing the lint.
+  rules:
+    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
+    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
